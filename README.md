@@ -1,12 +1,19 @@
 # Predictive_models
-This repository includes a central Mods.R file and several data sets. The data was sourced from the Parkinson’s Progressive Markers Initiative (PPMI : http://www.ppmi-info.org/) . Data was filtered to include only complete cases across 14 different non-motor and biomarker features. 
+
+This repository data was sourced from the Parkinson’s Progressive Markers Initiative (PPMI : http://www.ppmi-info.org/) . Data was filtered to include only complete cases across 14 different non-motor and biomarker features. 
+
+This research was published in Frontiers in Neurology May 11, 2020.
+https://www.frontiersin.org/articles/10.3389/fneur.2020.00364/full).  For updated model results, results related to software updates, please see the Supporting Information VI file.
  
 The code and data were for two binary predictive probability analyses: classification of early Parkinson’s disease (PD) versus controls and classification of early PD versus SWEDD (scans without evidence of dopamine deficit). Binary logistic regression, general additive (GAM), decision tree, random forest and XGBoost models were fitted using non-motor clinical and biomarker features. You will need install the relevant libraries (i.e. for XGBoost, GAM, randomForest, and rpart). The required libraries are as follows:
-library(car); library (data.table); library(DMwR); library(grid); library(psych); library(QuantPsyc); library(corrplot) library(tidyr); library(MASS); library(pscl); library(ROSE); library(rpart); library(dplyr); library(ggplot2); library(effects); library(randomForest)
+library(car); library(DMwR); library(grid); library(psych); library(QuantPsyc); library(corrplot)
+library(tidyr); library(MASS); library(pscl); library(ROSE); library(rpart)
+library(dplyr); library(ggplot2); library(effects); library(randomForest)
 library(caret); library(rpart.plot);  library(rattle); library(pROC); library(xgboost)
+library(nlme); library(mgcv)
 
 Data sets (csv format)
-Note, simply following the Mods.R script ensures correct usage of the data sets. Some data sets  have long and unfortunately convoluted names. Of course, you can rename any data set and insert the changed name into the model (e.g. mod1<- model(outcome ~. , data = “new_Data_name”).
+Note, to acquire the central single R file that includes code for all models contact the lead author: Charles Leger, cslfalcon@gmail.com. The central R file named, Mods.R, ensures correct usage of the data sets. Some data sets  have long and unfortunately convoluted names. Of course, you can rename any data set and insert the changed name into the model (e.g. mod1<- model(outcome ~. , data = “new_Data_name”).
 
 The hcpd.dat and pdsw2.dat sets include the early PD/control and early PD/SWEDD data respectively. Both data sets were split into train and test sets using random stratified partitioning. The main early PD/control data sets are train1 and test1. The main early PD/SWEDD data sets  are train50a and test50a.  All 5 models were trained on features determined by model-based feature selection from train1 in the case of the early PD/control binary classification. For the early PD/SWEDD classification, all 5 models were trained on features determined by model-based feature selection using train50a. In both analyses model features producing the highest AUC were adopted final model features.  The final models were then tested on the validation data. 
 
@@ -53,4 +60,4 @@ used a different SMOTE data set: “TreeSub_resampSm88_66.csv” (PD 88, SWEDD 6
 Brief on results
  All five models achieved >.80 AUC cross-validated (CV) accuracy to distinguish early PD from controls using non-motor clinical and biomarker features.  Classifier performance, across models, was consistently lower in the early PD/SWEDD analyses. In both early PD/control and early PD/SWEDD analyses, and across all models, hyposmia was the single most important feature to classification; RDBQ held the next most common high rank of importance. Alpha-synuclein was a feature of import to early PD/control but not early PD/SWEDD classification and the Epworth Sleepiness scale was antithetically important to the latter but not former. 
 
-Corresponding author: charlie9@yorku.ca; cslfalcon@gmail.com
+Corresponding author: cslfalcon@gmail.com
