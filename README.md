@@ -1,4 +1,4 @@
-# Predictive_models
+# Predictive models
 
 This repository data was sourced from the Parkinson’s Progressive Markers Initiative (PPMI : http://www.ppmi-info.org/) . Data was filtered to include only complete cases across 14 different non-motor and biomarker features. 
 
